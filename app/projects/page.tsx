@@ -204,7 +204,7 @@ function ProjectCard({ project }: { project: Project }) {
               loading="lazy"
               className="absolute top-0 left-0 w-5xl h-192 border-0 bg-white"
               style={{
-                transform: 'scale(0.39)', // আইফ্রেমকে ছোট করে কার্ডে ফিট করার জন্য
+                transform: 'scale(0.38)', 
                 transformOrigin: 'top left',
                 pointerEvents: 'none'
               }}
