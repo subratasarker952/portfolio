@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import useSWR from 'swr'
 import { projectsApi } from '@/services/api'
 import type { Project } from '@/types'
-import { ExternalLink, Github, Search, Filter } from 'lucide-react'
+import { ExternalLink, Github, Search, Filter, Play } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
@@ -251,15 +251,31 @@ export function ProjectsSection() {
 }
 
 function ProjectCard({ project }: { project: Project }) {
+
   return (
     <motion.div
       whileHover={{ y: -5 }}
       className="group h-full"
     >
       <div className="bg-card border border-border rounded-xl overflow-hidden h-full flex flex-col hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
-        {/* Thumbnail */}
+        
+        {/* Thumbnail Area */}
         <div className="relative aspect-video bg-linear-to-br from-secondary to-muted overflow-hidden">
-          {project.thumbnail ? (
+          
+          {/* ⚠️ Iframe vs Image Logic */}
+          { project.liveUrl ? (
+            <iframe
+              src={project.liveUrl}
+              title={project.title}
+              loading="lazy"
+              className="absolute top-0 left-0 w-5xl h-192 border-0 bg-white"
+              style={{
+                transform: 'scale(0.39)', // আইফ্রেমকে ছোট করে কার্ডে ফিট করার জন্য
+                transformOrigin: 'top left',
+                pointerEvents: 'none'
+              }}
+            />
+          ) : project.thumbnail ? (
             <img
               src={project.thumbnail}
               alt={project.title}
@@ -274,51 +290,49 @@ function ProjectCard({ project }: { project: Project }) {
           )}
 
           {/* Featured Badge */}
-          {project.featured && (
-            <div className="absolute top-3 left-3 px-2 py-1 rounded-full bg-primary text-primary-foreground text-xs font-medium">
+          {/* {project.featured && (
+            <div className="absolute top-3 left-3 px-2 py-1 rounded-full bg-primary text-primary-foreground text-xs font-medium z-10">
               Featured
             </div>
-          )}
+          )} */}
 
-          {/* Overlay with Links */}
-          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
-            {project.liveUrl && (
-              <Button size="sm" asChild>
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Live Demo
-                </a>
-              </Button>
-            )}
-            {project.githubUrl && (
-              <Button size="sm" variant="secondary" asChild>
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                  <Github className="w-4 h-4 mr-2" />
-                  Code
-                </a>
-              </Button>
-            )}
+          {/* Overlay with Links (Hover Effect) */}
+          <div className="absolute inset-0 bg-black/60 transition-opacity duration-300 flex flex-col items-center justify-center gap-3 z-20 opacity-0 group-hover:opacity-100">
+            <div className="flex gap-3">
+              {project.liveUrl && (
+                <Button size="sm" asChild>
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Full Site
+                  </a>
+                </Button>
+              )}
+              {project.githubUrl && (
+                <Button size="sm" variant="secondary" asChild>
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                    <Github className="w-4 h-4 mr-2" />
+                    Code
+                  </a>
+                </Button>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Content */}
+        {/* Content Area */}
         <div className="p-5 flex flex-col flex-1">
-          {/* Category */}
           <span className="text-xs font-medium text-primary mb-2">{project.category}</span>
 
-          {/* Title */}
           <h3 className="font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">
             <Link href={`/projects/${project.slug}`}>
               {project.title}
             </Link>
           </h3>
 
-          {/* Description */}
           <p className="text-muted-foreground text-sm leading-relaxed mb-4 flex-1 line-clamp-3">
             {project.description}
           </p>
 
-          {/* Tech Stack */}
           <div className="flex flex-wrap gap-2">
             {project.techStack.slice(0, 4).map((tech) => (
               <span
