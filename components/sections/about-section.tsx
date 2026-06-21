@@ -40,7 +40,7 @@ export function AboutSection() {
                 <div className="w-full h-full rounded-xl bg-card flex items-center justify-center">
                   {about.avatar ? (
                     <img
-                      src={about.avatar}
+                      src={about.avatar || "/subrataProfilePhoto.jpg"}
                       alt="Profile"
                       className="w-full h-full object-cover rounded-xl"
                     />
