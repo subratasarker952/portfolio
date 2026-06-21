@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   title: {
-    default: 'DevPortfolio | Full-Stack Web Developer',
+    default: 'Subrata Sarker Portfolio | Full-Stack Web Developer',
     template: '%s | DevPortfolio',
   },
   description:
@@ -32,30 +32,30 @@ export const metadata: Metadata = {
     'Web Development',
     'Portfolio',
   ],
-  authors: [{ name: 'DevPortfolio' }],
-  creator: 'DevPortfolio',
+  authors: [{ name: 'Subrata Sarker Portfolio' }],
+  creator: 'Subrata Sarker Portfolio',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://devportfolio.com',
-    siteName: 'DevPortfolio',
-    title: 'DevPortfolio | Full-Stack Web Developer',
+    url: 'https://subratasarker.vercel.app',
+    siteName: 'Subrata Sarker Portfolio',
+    title: 'Subrata Sarker Portfolio | Full-Stack Web Developer',
     description:
       'Full-Stack Web Developer specializing in building scalable MERN applications.',
     images: [
       {
-        url: '/og-image.png',
+        url: '/subrataProfilePicture.jpg',
         width: 1200,
         height: 630,
-        alt: 'DevPortfolio',
+        alt: 'Subrata sarker Portfolio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DevPortfolio | Full-Stack Web Developer',
+    title: 'Subrata Sarker Portfolio | Full-Stack Web Developer',
     description: 'Full-Stack Web Developer specializing in building scalable MERN applications.',
-    images: ['/og-image.png'],
+    images: ['/subrataProfilePicture.jpg'],
     creator: '@devportfolio',
   },
   robots: {
@@ -80,11 +80,11 @@ export const metadata: Metadata = {
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/icon.jpg',
+        type: 'image/jpg',
       },
     ],
-    apple: '/apple-icon.png',
+    apple: '/apple-icon.jpg',
   },
 }
 

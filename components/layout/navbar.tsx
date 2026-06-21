@@ -87,8 +87,8 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled
-            ? 'border-b border-border/50 bg-background/70 backdrop-blur-2xl shadow-lg shadow-black/5'
-            : 'bg-transparent'
+          ? 'border-b border-border/50 bg-background/70 backdrop-blur-2xl shadow-lg shadow-black/5'
+          : 'bg-transparent'
           }`}
       >
         <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -99,12 +99,10 @@ export function Navbar() {
           >
             <Link href="/" className="group flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-linear-to-br from-primary to-accent text-primary-foreground shadow-lg shadow-primary/20 transition-transform duration-300 group-hover:scale-105">
-                <span className="text-lg font-bold">
-                  {about?.name?.charAt(0) || 'S'}
-                </span>
+                <img src={about?.avatar || "/logo.jpg"} className='rounded-2xl' alt="logo" />
               </div>
 
-              <div className="hidden sm:block">
+              <div className="whitespace-nowrap">
                 <h2 className="text-lg font-bold leading-none text-foreground">
                   {about?.name || 'Subrata Sarker'}
                 </h2>
